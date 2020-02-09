@@ -1,0 +1,27 @@
+---
+# Install vmware packages
+
+- name: unwanted packages are removed
+  package:
+    name: "{{ vmware_packages_remove }}"
+    state: absent
+  become: true
+  when: vmware_remove_packages
+
+- name: prereq repositories are installed
+  package:
+    name: "{{ vmware_packages_repos }}"
+    state: "{{ vmware_packages_state }}"
+  become: true
+
+- name: prereq packages are installed
+  package:
+    name: "{{ vmware_packages_prereq }}"
+    state: "{{ vmware_packages_state }}"
+  become: true
+
+- name: packages are installed
+  package:
+    name: "{{ vmware_packages_install }}"
+    state: "{{ vmware_packages_state }}"
+  become: true

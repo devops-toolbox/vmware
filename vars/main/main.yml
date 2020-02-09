@@ -1,0 +1,44 @@
+---
+# vars file for packages
+
+# Detected OS
+my_os: "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}"
+
+# Repos create
+vmware_repos_create: "{{ _vmware_repos_create['all']
+  | union ( _vmware_repos_create[my_os]
+  | default([]) ) }}"
+
+# Repos download
+vmware_repos_download: "{{ _vmware_repos_download['all']
+  | union ( _vmware_repos_download[my_os]
+  | default([]) ) }}"
+
+# Templates Copy
+vmware_templates_copy: "{{ _vmware_templates_copy['all']
+  | union ( _vmware_templates_copy[my_os]
+  | default([]) ) }}"
+
+# Services Enable
+vmware_services_enable: "{{ _vmware_services_enable['all']
+  | union ( _vmware_services_enable[my_os]
+  | default([]) ) }}"
+
+# SELinux Enable
+vmware_selinux_enable: "{{ _vmware_selinux_enable['all']
+  | union ( _vmware_selinux_enable[my_os]
+  | default([]) ) }}"
+
+# Packages lists
+vmware_packages_remove: "{{ _vmware_packages_remove['all']
+  | union ( _vmware_packages_remove[my_os]
+  | default([]) ) }}"
+vmware_packages_repos: "{{ _vmware_packages_repos['all']
+  | union ( _vmware_packages_repos[my_os]
+  | default([]) ) }}"
+vmware_packages_prereq: "{{ _vmware_packages_prereq['all']
+  | union ( _vmware_packages_prereq[my_os]
+  | default([]) ) }}"
+vmware_packages_install: "{{ _vmware_packages_install['all']
+  | union ( _vmware_packages_install[my_os]
+  | default([]) ) }}"

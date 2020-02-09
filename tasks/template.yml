@@ -1,0 +1,10 @@
+---
+# Template configuration files for vmware
+
+- name: template is copied
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  become: true
+  loop: "{{ vmware_templates_copy }}"
+  when: vmware_copy_templates
